@@ -1,0 +1,88 @@
+#####Questions
+
+>What is a Node module?
+
+A:
+
+A Node module is a set of functions you can include in your Node application.
+Modules allow you to break your application into more manageable pieces.
+
+>What is the main difference between exports and module.exports?
+
+A:
+
+The main difference between exports and module.exports is that
+module.exports is variable that gets returned from require(),
+while exports is only a reference to module.exports. module.exports
+can be reassigned to anything and therefore be overwritten,
+while overwritting exports will not affect the module.exports
+object.
+
+>Why is using exports recommended?
+
+Using exports is recommended because of what I mentioned above. exports allows
+you to avoid accidentally overwriting the module.exports object. However, it
+is recommended to use module.exports if you want your module to be a specific
+object type.
+
+####Programming Questions
+
+My answers to 4, 5, and 6:
+
+greeting.js:
+
+```
+exports.greetingEnglish = function() {
+  console.log("Hello");
+}
+
+exports.greetingJapanese = function() {
+  console.log("Konichiwa");
+}
+
+exports.greetingSpanish = function() {
+  console.log("Hola");
+}
+
+exports.greetingIcelandic = function() {
+  console.log("Halló");
+}
+
+```
+
+farewell.js
+
+```
+exports.farewellSpanish = function() {
+  console.log("Adios");
+}
+
+exports.farewellEnglish = function() {
+  console.log("Goodbye");
+}
+```
+
+main.js:
+
+```
+const greetings = require("./greeting.js");
+const farewells = require("./farewell.js");
+
+//"Hello"
+greetings.greetingEnglish();
+
+//"Konichiwa"
+greetings.greetingJapanese();
+
+//"Hola"
+greetings.greetingSpanish();
+
+//"Halló"
+greetings.greetingIcelandic();
+
+//Adios
+farewells.farewellSpanish();
+
+//Goodbye
+farewells.farewellEnglish();
+```
